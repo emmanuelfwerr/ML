@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-thyroidDF = pd.read_csv('landing/temporal/raw/thyroid.data', sep=',', header=None)
+thyroidDF = pd.read_csv('data/raw/thyroid.data', sep=',', header=None)
 
 # defining dataset columns
 initial_columns = ['age', 'sex', 'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_meds', 'sick',
@@ -22,24 +22,24 @@ thyroidDF[['target', 'patient_id']] = thyroidDF['target'].str.split('[', expand=
 thyroidDF['patient_id'] = thyroidDF['patient_id'].str.replace(']', '')
 
 # export to csv in persistent landing zone
-thyroidDF.to_csv('landing/persistent/thyroidDF.csv', index=False)
+thyroidDF.to_csv('data/thyroidDF.csv', index=False)
 
 
 # importing datasets
-df_hyper = pd.read_csv('landing/temporal/raw/allhyper.data', sep=',', header=None)
-df_hyper_test = pd.read_csv('landing/temporal/raw/allhyper.test', sep=',', header=None)
+df_hyper = pd.read_csv('data/raw/allhyper.data', sep=',', header=None)
+df_hyper_test = pd.read_csv('data/raw/allhyper.test', sep=',', header=None)
 
-df_hypo = pd.read_csv('landing/temporal/raw/allhypo.data', sep=',', header=None)
-df_hypo_test = pd.read_csv('landing/temporal/raw/allhypo.test', sep=',', header=None)
+df_hypo = pd.read_csv('data/raw/allhypo.data', sep=',', header=None)
+df_hypo_test = pd.read_csv('data/raw/allhypo.test', sep=',', header=None)
 
-df_bp = pd.read_csv('landing/temporal/raw/allbp.data', sep=',', header=None)
-df_bp_test = pd.read_csv('landing/temporal/raw/allbp.test', sep=',', header=None)
+df_bp = pd.read_csv('data/raw/allbp.data', sep=',', header=None)
+df_bp_test = pd.read_csv('data/raw/allbp.test', sep=',', header=None)
 
-df_rep = pd.read_csv('landing/temporal/raw/allrep.data', sep=',', header=None)
-df_rep_test = pd.read_csv('landing/temporal/raw/allrep.test', sep=',', header=None)
+df_rep = pd.read_csv('data/raw/allrep.data', sep=',', header=None)
+df_rep_test = pd.read_csv('data/raw/allrep.test', sep=',', header=None)
 
-df_sick = pd.read_csv('landing/temporal/raw/sick.data', sep=',', header=None)
-df_sick_test = pd.read_csv('landing/temporal/raw/sick.test', sep=',', header=None)
+df_sick = pd.read_csv('data/raw/sick.data', sep=',', header=None)
+df_sick_test = pd.read_csv('data/raw/sick.test', sep=',', header=None)
 
 
 # defining dataset columns
@@ -127,20 +127,20 @@ df_sick_test.drop('target', axis=1, inplace=True)
 
 
 # back-up clean datasets to .csv separately
-df_hyper.to_csv('landing/temporal/csv_checkpoint/all_hyper.csv', index=False)
-df_hyper_test.to_csv('landing/temporal/csv_checkpoint/all_hyper_test.csv', index=False)
+df_hyper.to_csv('data/csv_checkpoint/all_hyper.csv', index=False)
+df_hyper_test.to_csv('data/csv_checkpoint/all_hyper_test.csv', index=False)
 
-df_hypo.to_csv('landing/temporal/csv_checkpoint/all_hypo.csv', index=False)
-df_hypo_test.to_csv('landing/temporal/csv_checkpoint/all_hypo_test.csv', index=False)
+df_hypo.to_csv('data/csv_checkpoint/all_hypo.csv', index=False)
+df_hypo_test.to_csv('data/csv_checkpoint/all_hypo_test.csv', index=False)
 
-df_bp.to_csv('landing/temporal/csv_checkpoint/all_bp.csv', index=False)
-df_bp_test.to_csv('landing/temporal/csv_checkpoint/all_bp_test.csv', index=False)
+df_bp.to_csv('data/csv_checkpoint/all_bp.csv', index=False)
+df_bp_test.to_csv('data/csv_checkpoint/all_bp_test.csv', index=False)
 
-df_rep.to_csv('landing/temporal/csv_checkpoint/all_rep.csv', index=False)
-df_rep_test.to_csv('landing/temporal/csv_checkpoint/all_rep_test.csv', index=False)
+df_rep.to_csv('data/csv_checkpoint/all_rep.csv', index=False)
+df_rep_test.to_csv('data/csv_checkpoint/all_rep_test.csv', index=False)
 
-df_sick.to_csv('landing/temporal/csv_checkpoint/all_sick.csv', index=False)
-df_sick_test.to_csv('landing/temporal/csv_checkpoint/all_sick_test.csv', index=False)
+df_sick.to_csv('data/csv_checkpoint/all_sick.csv', index=False)
+df_sick_test.to_csv('data/csv_checkpoint/all_sick_test.csv', index=False)
 
 
 # merge targets of all dataframes on 'patient_id'
@@ -158,9 +158,9 @@ df_all_test = pd.merge(df_thyroid_test, df_bp_rep_sick_test[['patient_id','targe
 
 
 # export to csv
-df_thyroid.to_csv('landing/persistent/all_thyroid.csv', index=False)
-df_thyroid_test.to_csv('landing/persistent/all_thyroid_test.csv', index=False)
+df_thyroid.to_csv('data/all_thyroid.csv', index=False)
+df_thyroid_test.to_csv('data/all_thyroid_test.csv', index=False)
 
-df_all.to_csv('landing/persistent/all_conditions.csv', index=False)
-df_all_test.to_csv('landing/persistent/all_conditions_test.csv', index=False)
+df_all.to_csv('data/all_conditions.csv', index=False)
+df_all_test.to_csv('data/all_conditions_test.csv', index=False)
 
